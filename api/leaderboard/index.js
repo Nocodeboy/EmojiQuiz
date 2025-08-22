@@ -94,15 +94,26 @@ export default async function handler(req, res) {
       
     } else if (req.method === 'POST') {
       // Add new score
+      console.log('POST request received, body:', req.body);
+      
       const { playerName, score, level, categoriesCompleted, achievementsUnlocked, gameMode } = req.body;
       
-      if (!playerName || typeof score !== 'number') {
-        return res.status(400).json({ error: 'Missing required fields' });
+      console.log('Extracted data:', { playerName, score, level, categoriesCompleted, achievementsUnlocked, gameMode });
+      
+      // Validate required fields
+      if (!playerName || playerName.trim() === '') {
+        console.error('Missing or empty playerName');
+        return res.status(400).json({ error: 'Player name is required' });
+      }
+      
+      if (typeof score !== 'number' || isNaN(score) || score < 0) {
+        console.error('Invalid score:', score);
+        return res.status(400).json({ error: 'Valid score is required' });
       }
 
       const playerData = {
         id: Date.now().toString(),
-        playerName: playerName.substring(0, 20), // Limit name length
+        playerName: playerName.trim().substring(0, 20), // Limit name length
         level: level || 1,
         categoriesCompleted: categoriesCompleted || [],
         achievementsUnlocked: achievementsUnlocked || 0,
@@ -110,19 +121,39 @@ export default async function handler(req, res) {
         timestamp: new Date().toISOString()
       };
 
-      // Store in sorted set (Redis ZADD)
-      await kv.zadd('leaderboard', {
-        score: score,
-        member: JSON.stringify(playerData)
-      });
+      console.log('Player data to save:', playerData);
 
-      // Keep only top 100 to avoid unlimited growth
-      await kv.zremrangebyrank('leaderboard', 0, -101);
+      try {
+        // Test KV connection first for POST too
+        await kv.ping();
+        console.log('KV ping successful for POST');
 
-      res.status(201).json({ 
-        message: 'Score saved successfully',
-        rank: await getPlayerRank(score)
-      });
+        // Store in sorted set (Redis ZADD)
+        const addResult = await kv.zadd('leaderboard', {
+          score: score,
+          member: JSON.stringify(playerData)
+        });
+
+        console.log('ZADD result:', addResult);
+
+        // Keep only top 100 to avoid unlimited growth
+        await kv.zremrangebyrank('leaderboard', 0, -101);
+
+        const playerRank = await getPlayerRank(score);
+        console.log('Player rank calculated:', playerRank);
+
+        res.status(201).json({ 
+          message: 'Score saved successfully',
+          rank: playerRank,
+          playerData: playerData
+        });
+      } catch (postError) {
+        console.error('Error saving score:', postError);
+        return res.status(500).json({ 
+          error: 'Failed to save score',
+          details: postError.message
+        });
+      }
       
     } else {
       res.setHeader('Allow', ['GET', 'POST']);
@@ -144,8 +175,11 @@ export default async function handler(req, res) {
 
 async function getPlayerRank(score) {
   try {
-    const rank = await kv.zrevrank('leaderboard', score);
-    return rank !== null ? rank + 1 : null;
+    // Get count of scores higher than current score
+    const higherScores = await kv.zcount('leaderboard', score + 1, '+inf');
+    const rank = higherScores + 1;
+    console.log('Rank calculation - score:', score, 'higher scores:', higherScores, 'rank:', rank);
+    return rank;
   } catch (error) {
     console.error('Error getting rank:', error);
     return null;

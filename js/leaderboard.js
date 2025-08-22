@@ -7,6 +7,8 @@ class Leaderboard {
     // Submit score to leaderboard
     async submitScore(scoreData) {
         try {
+            console.log('Submitting score data:', scoreData);
+            
             const response = await fetch(this.apiUrl, {
                 method: 'POST',
                 headers: {
@@ -15,11 +17,18 @@ class Leaderboard {
                 body: JSON.stringify(scoreData)
             });
 
+            console.log('Submit response status:', response.status);
+            console.log('Submit response headers:', Object.fromEntries(response.headers.entries()));
+
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                const errorText = await response.text();
+                console.error('Submit error response:', errorText);
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
             }
 
-            return await response.json();
+            const result = await response.json();
+            console.log('Submit success response:', result);
+            return result;
         } catch (error) {
             console.error('Error submitting score:', error);
             throw error;
