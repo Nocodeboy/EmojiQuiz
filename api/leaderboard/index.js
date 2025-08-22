@@ -149,9 +149,27 @@ export default async function handler(req, res) {
         });
       } catch (postError) {
         console.error('Error saving score:', postError);
-        return res.status(500).json({ 
-          error: 'Failed to save score',
-          details: postError.message
+        console.error('Error stack:', postError.stack);
+        console.error('Error name:', postError.name);
+        
+        let errorMessage = 'Failed to save score';
+        let statusCode = 500;
+        
+        if (postError.message.includes('KV_REST_API_URL')) {
+          errorMessage = 'Database configuration error';
+          statusCode = 503;
+        } else if (postError.message.includes('unauthorized')) {
+          errorMessage = 'Database authentication error';
+          statusCode = 503;
+        } else if (postError.message.includes('timeout')) {
+          errorMessage = 'Database timeout error';
+          statusCode = 504;
+        }
+        
+        return res.status(statusCode).json({ 
+          error: errorMessage,
+          details: postError.message,
+          timestamp: new Date().toISOString()
         });
       }
       

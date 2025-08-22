@@ -764,9 +764,21 @@ class Game {
                 gameMode: this.difficulty || 'normal'
             };
             
+            console.log('Game over - preparing leaderboard data:', gameData);
+            console.log('Score validation:', {
+                scoreValue: this.score,
+                scoreType: typeof this.score,
+                isValidScore: typeof this.score === 'number' && !isNaN(this.score) && this.score > 0
+            });
+            
             // Mostrar modal de envío de puntuación
             setTimeout(() => {
-                window.leaderboard.showScoreSubmissionModal(gameData);
+                if (window.leaderboard && window.leaderboard.showScoreSubmissionModal) {
+                    console.log('Showing score submission modal');
+                    window.leaderboard.showScoreSubmissionModal(gameData);
+                } else {
+                    console.error('Leaderboard not available or method missing');
+                }
             }, 1000); // Pequeño delay para que el usuario vea las estadísticas primero
         }
         

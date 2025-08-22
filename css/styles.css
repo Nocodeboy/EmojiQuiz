@@ -115,6 +115,10 @@
     color: var(--wrong-color);
 }
 
+.submission-status .info {
+    color: var(--accent-color);
+}
+
 .leaderboard-list {
     max-height: 400px;
     overflow-y: auto;

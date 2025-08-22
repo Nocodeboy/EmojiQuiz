@@ -100,24 +100,38 @@ class Leaderboard {
         submitBtn.addEventListener('click', async () => {
             const playerName = nameInput.value.trim();
             
+            console.log('Submit button clicked, gameData:', gameData);
+            console.log('Player name entered:', playerName);
+            
             if (!playerName) {
                 statusDiv.innerHTML = '<span class="error">⚠️ Por favor ingresa tu nombre</span>';
                 return;
             }
 
+            if (playerName.length > 20) {
+                statusDiv.innerHTML = '<span class="error">⚠️ El nombre debe tener máximo 20 caracteres</span>';
+                return;
+            }
+
             submitBtn.disabled = true;
             submitBtn.textContent = '⏳ Guardando...';
+            statusDiv.innerHTML = '<span class="info">📡 Enviando datos...</span>';
+
+            const scorePayload = {
+                playerName,
+                score: gameData.score,
+                level: gameData.level,
+                categoriesCompleted: gameData.categoriesCompleted || [],
+                achievementsUnlocked: gameData.achievementsUnlocked || 0,
+                gameMode: gameData.gameMode || 'normal'
+            };
+
+            console.log('Score payload to submit:', scorePayload);
 
             try {
-                const result = await this.submitScore({
-                    playerName,
-                    score: gameData.score,
-                    level: gameData.level,
-                    categoriesCompleted: gameData.categoriesCompleted || [],
-                    achievementsUnlocked: gameData.achievementsUnlocked || 0,
-                    gameMode: gameData.gameMode || 'normal'
-                });
+                const result = await this.submitScore(scorePayload);
 
+                console.log('Submit successful:', result);
                 statusDiv.innerHTML = `<span class="success">✅ ¡Puntuación guardada! Posición: #${result.rank || '?'}</span>`;
                 
                 setTimeout(() => {
@@ -126,7 +140,22 @@ class Leaderboard {
                 }, 2000);
 
             } catch (error) {
-                statusDiv.innerHTML = '<span class="error">❌ Error al guardar. Inténtalo de nuevo.</span>';
+                console.error('Submit failed:', error);
+                let errorMsg = '❌ Error al guardar. ';
+                
+                if (error.message.includes('400')) {
+                    errorMsg += 'Datos inválidos.';
+                } else if (error.message.includes('500')) {
+                    errorMsg += 'Error del servidor.';
+                } else if (error.message.includes('fetch')) {
+                    errorMsg += 'Sin conexión.';
+                } else {
+                    errorMsg += 'Inténtalo de nuevo.';
+                }
+                
+                statusDiv.innerHTML = `<span class="error">${errorMsg}</span>`;
+                statusDiv.innerHTML += `<br><small>Detalle: ${error.message}</small>`;
+                
                 submitBtn.disabled = false;
                 submitBtn.textContent = '💾 Guardar en Ranking';
             }
