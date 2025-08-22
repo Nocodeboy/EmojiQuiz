@@ -11,12 +11,23 @@ export default async function handler(req, res) {
     return;
   }
 
+  // Log environment info
+  console.log('Leaderboard API called:', {
+    method: req.method,
+    hasKvUrl: !!process.env.KV_REST_API_URL,
+    hasKvToken: !!process.env.KV_REST_API_TOKEN,
+    kvUrlPreview: process.env.KV_REST_API_URL ? process.env.KV_REST_API_URL.substring(0, 30) + '...' : 'undefined'
+  });
+
   try {
     if (req.method === 'GET') {
-      // Check if KV is available
-      if (!kv) {
-        console.error('KV not available - returning demo data');
-        // Return demo data when KV is not available
+      // Test KV connection first
+      console.log('Testing KV connection...');
+      try {
+        await kv.ping();
+        console.log('KV ping successful');
+      } catch (pingError) {
+        console.error('KV ping failed:', pingError);
         return res.status(200).json([
           {
             id: "demo1",
