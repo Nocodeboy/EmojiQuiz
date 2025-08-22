@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmojiQuiz Test</title>
+    <style>
+        .screen { display: none; }
+        .screen:not(.hidden) { display: block; }
+        button { margin: 10px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div id="start-screen" class="screen">
+        <h1>EMOJIQUIZ</h1>
+        <button id="start-game-btn">JUGAR</button>
+        <button id="test-btn">TEST</button>
+    </div>
+
+    <div id="game-screen" class="screen hidden">
+        <h2>Game Screen</h2>
+        <div id="score">0</div>
+        <div id="lives">❤️ ❤️ ❤️</div>
+        <div id="level">1</div>
+        <div id="category">Categoría: Test</div>
+        <div id="emoji-display"></div>
+        <div id="options-container"></div>
+        <div id="feedback"></div>
+        <button id="next-btn">SIGUIENTE</button>
+        <div id="timer-bar"></div>
+        <div id="streak-container">
+            <div class="streak-emoji">🔥</div>
+            <div class="streak-emoji">🔥</div>
+            <div class="streak-emoji">🔥</div>
+        </div>
+        <div class="power-up-container">
+            <div class="power-up" id="fiftyFifty-powerup">
+                <div class="power-up-count" id="fiftyFifty-count">3</div>
+            </div>
+            <div class="power-up" id="extraTime-powerup">
+                <div class="power-up-count" id="extraTime-count">2</div>
+            </div>
+            <div class="power-up" id="extraHint-powerup">
+                <div class="power-up-count" id="extraHint-count">3</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/i18n/translations.js"></script>
+    <script type="module">
+        // Test loading gameData
+        console.log('Loading gameData...');
+        try {
+            const gameDataModule = await import('./data/index.js');
+            window.gameData = gameDataModule.default;
+            console.log('gameData loaded:', window.gameData);
+            
+            // Load other scripts after gameData is available
+            loadScripts();
+        } catch (error) {
+            console.error('Error loading gameData:', error);
+        }
+        
+        function loadScripts() {
+            // Load audio manager
+            const audioScript = document.createElement('script');
+            audioScript.src = 'js/audio.js';
+            audioScript.onload = () => {
+                console.log('Audio script loaded');
+                
+                // Load game
+                const gameScript = document.createElement('script');
+                gameScript.src = 'js/game.js';
+                gameScript.onload = () => {
+                    console.log('Game script loaded');
+                    
+                    // Load UI
+                    const uiScript = document.createElement('script');
+                    uiScript.src = 'js/ui.js';
+                    uiScript.onload = () => {
+                        console.log('UI script loaded');
+                        
+                        // Load main and initialize
+                        const mainScript = document.createElement('script');
+                        mainScript.src = 'js/main.js';
+                        mainScript.onload = () => {
+                            console.log('Main script loaded');
+                        };
+                        document.head.appendChild(mainScript);
+                    };
+                    document.head.appendChild(uiScript);
+                };
+                document.head.appendChild(gameScript);
+            };
+            document.head.appendChild(audioScript);
+        }
+    </script>
+    
+    <script>
+        // Simple test
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('test-btn').addEventListener('click', () => {
+                console.log('Test button clicked');
+                alert('Test button works!');
+            });
+        });
+    </script>
+</body>
+</html>

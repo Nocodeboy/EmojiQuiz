@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmojiQuiz Debug</title>
+</head>
+<body>
+    <h1>Debug Console</h1>
+    <div id="debug-output"></div>
+    <button id="test-btn">Test Button</button>
+
+    <script>
+        const debugOutput = document.getElementById('debug-output');
+        
+        function log(message) {
+            console.log(message);
+            debugOutput.innerHTML += `<p>${message}</p>`;
+        }
+        
+        log('Starting debug...');
+        
+        // Test basic JavaScript
+        document.getElementById('test-btn').addEventListener('click', () => {
+            log('Button click works!');
+        });
+        
+        // Test module loading
+        log('Testing module loading...');
+        
+        // Try to load gameData
+        import('./data/index.js')
+            .then(module => {
+                log('gameData module loaded successfully');
+                window.gameData = module.default;
+                log('gameData available: ' + !!window.gameData);
+                if (window.gameData) {
+                    log('Categories: ' + JSON.stringify(Object.keys(window.gameData.categories || {})));
+                }
+            })
+            .catch(error => {
+                log('Error loading gameData: ' + error.message);
+            });
+    </script>
+</body>
+</html>
