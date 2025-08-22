@@ -7,11 +7,13 @@
 let game;
 let ui;
 let audio;
+let leaderboard;
 
 // Hacer las instancias accesibles globalmente
 window.game = null;
 window.ui = null;
 window.audio = null;
+window.leaderboard = null;
 
 // Inicializar el juego cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,11 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
         audio = new AudioManager();
         game = new Game();
         ui = new UI();
+        leaderboard = new Leaderboard();
     
     // Hacer las instancias accesibles globalmente
     window.audio = audio;
     window.game = game;
     window.ui = ui;
+    window.leaderboard = leaderboard;
     
     // Cargar configuración guardada
     if (window.game) window.game.loadSettings();
@@ -79,6 +83,12 @@ function setupEventListeners() {
         if (window.audio) window.audio.play('click');
         if (window.ui) window.ui.initCategoriesScreen(); // Actualiza datos por si ha habido cambios
         if (window.ui) window.ui.showScreen('categories-screen');
+    });
+    
+    // Botón Ranking/Leaderboard
+    document.getElementById('leaderboard-btn').addEventListener('click', () => {
+        if (window.audio) window.audio.play('click');
+        if (window.leaderboard) window.leaderboard.showLeaderboard();
     });
     
     // Botón Logros

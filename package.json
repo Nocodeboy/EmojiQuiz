@@ -1,0 +1,17 @@
+{
+  "name": "emojiquiz",
+  "version": "1.0.2",
+  "description": "Retro-styled educational quiz game with emoji clues",
+  "type": "module",
+  "dependencies": {
+    "@vercel/kv": "^3.0.0"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "start": "echo 'Static site - no start needed'"
+  },
+  "keywords": ["quiz", "emoji", "game", "retro", "education"],
+  "author": "Nocodeboy",
+  "license": "MIT"
+}

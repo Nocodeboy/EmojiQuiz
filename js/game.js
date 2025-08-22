@@ -753,8 +753,41 @@ class Game {
         // Actualizar estadísticas finales
         if (window.ui) window.ui.updateFinalStats(this.score, this.correctAnswers, this.wrongAnswers, this.level, this.maxStreak);
         
+        // Verificar si la puntuación es digna del leaderboard (mayor a 500 puntos)
+        if (this.score > 500 && window.leaderboard) {
+            // Preparar datos del juego para el leaderboard
+            const gameData = {
+                score: this.score,
+                level: this.level,
+                categoriesCompleted: this.getCompletedCategories(),
+                achievementsUnlocked: this.getUnlockedAchievementsCount(),
+                gameMode: this.difficulty || 'normal'
+            };
+            
+            // Mostrar modal de envío de puntuación
+            setTimeout(() => {
+                window.leaderboard.showScoreSubmissionModal(gameData);
+            }, 1000); // Pequeño delay para que el usuario vea las estadísticas primero
+        }
+        
         // Mostrar pantalla de fin del juego
         if (window.ui) window.ui.showScreen('game-over-screen');
+    }
+    
+    /**
+     * Obtiene las categorías completadas por el jugador
+     */
+    getCompletedCategories() {
+        if (!this.unlockedCategories) return [];
+        return this.unlockedCategories.filter(cat => cat !== 'general');
+    }
+    
+    /**
+     * Obtiene el número de logros desbloqueados
+     */
+    getUnlockedAchievementsCount() {
+        if (!this.unlockedAchievements) return 0;
+        return this.unlockedAchievements.length;
     }
     
     /**
