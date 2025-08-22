@@ -190,14 +190,25 @@
 
 /* Responsive adjustments for leaderboard */
 @media (max-width: 600px) {
+    .modal-overlay {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+    
     .modal-content {
-        padding: 20px;
-        margin: 10px;
+        padding: 15px;
+        margin: 0;
+        max-height: 90vh;
+        width: 100%;
+        max-width: none;
     }
     
     .score-item {
         grid-template-columns: 30px 1fr 70px;
         font-size: 0.5em;
+        padding: 8px;
+        gap: 8px;
     }
     
     .score-date {
@@ -211,6 +222,24 @@
     .modal-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
+    }
+    
+    .modal-buttons .btn {
+        width: 100%;
+        max-width: 250px;
+        padding: 12px;
+        font-size: 10px;
+    }
+    
+    .player-name-input input {
+        width: 100%;
+        font-size: 12px;
+        padding: 12px;
+    }
+    
+    .leaderboard-list {
+        max-height: 50vh;
     }
 }
 
@@ -221,7 +250,7 @@ body {
     line-height: 1.6;
     padding: 20px;
     overflow-x: hidden;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -232,6 +261,7 @@ body {
     width: 100%;
     margin: 0 auto;
     position: relative;
+    max-height: 90vh;
 }
 
 /* Estilos para pantallas */
@@ -243,7 +273,9 @@ body {
     border: 4px solid var(--primary-color);
     text-align: center;
     position: relative;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 85vh;
 }
 
 .screen::before {
@@ -842,16 +874,69 @@ select {
 
 /* Estilos para dispositivos móviles */
 @media (max-width: 600px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+        min-height: 100vh;
+    }
+    
+    #game-container {
+        max-height: none;
+        min-height: 90vh;
+    }
+    
+    .screen {
+        padding: 20px;
+        max-height: none;
+        min-height: 85vh;
+    }
+    
     .options-container {
         grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 100px; /* Espacio para el botón siguiente */
+    }
+    
+    .option {
+        padding: 15px;
+        font-size: 11px;
+        min-height: 50px;
     }
     
     h1 {
-        font-size: 28px;
+        font-size: 24px;
     }
     
     .emoji-display {
-        font-size: 54px;
+        font-size: 48px;
+        margin: 15px 0;
+    }
+    
+    .feedback {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.9);
+        padding: 10px 20px;
+        border-radius: 8px;
+        z-index: 1000;
+        width: 90%;
+        max-width: 300px;
+        text-align: center;
+        border: 2px solid var(--primary-color);
+    }
+    
+    .next-btn {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1001;
+        width: 90%;
+        max-width: 300px;
+        padding: 15px;
+        font-size: 12px;
     }
     
     .stats-summary {
@@ -863,7 +948,8 @@ select {
     }
     
     .category-card {
-        padding: 10px;
+        padding: 15px;
+        margin: 5px 0;
     }
     
     .category-icon {
@@ -871,11 +957,122 @@ select {
     }
     
     .category-name {
-        font-size: 10px;
+        font-size: 11px;
     }
     
     .instructions p, .scoring-info p {
         font-size: 10px;
+        line-height: 1.6;
+    }
+    
+    /* Achievements responsive */
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+        max-height: none;
+        padding: 5px;
+    }
+    
+    .achievement-card {
+        padding: 10px;
+        min-height: 100px;
+    }
+    
+    .achievement-icon {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    
+    .achievement-name {
+        font-size: 10px;
+        margin-bottom: 6px;
+    }
+    
+    .achievement-description {
+        font-size: 8px;
+        line-height: 1.3;
+    }
+    
+    /* Power-ups responsive */
+    .power-up-container {
+        gap: 10px;
+        margin: 10px 0;
+    }
+    
+    .power-up {
+        padding: 8px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    
+    .power-up i {
+        font-size: 14px;
+    }
+    
+    .power-up-count {
+        font-size: 8px;
+    }
+    
+    /* Timer responsive */
+    .timer-container {
+        margin: 10px 0;
+    }
+    
+    .timer-bar {
+        height: 6px;
+    }
+    
+    /* Level badge responsive */
+    .level-badge {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
+
+/* Estilos para tablets y pantallas medianas */
+@media (max-width: 768px) and (min-width: 601px) {
+    .screen {
+        padding: 25px;
+        max-height: 90vh;
+    }
+    
+    .options-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .emoji-display {
+        font-size: 60px;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+    }
+    
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 1200px) {
+    .screen {
+        padding: 40px;
+    }
+    
+    .options-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .emoji-display {
+        font-size: 80px;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 25px;
     }
 }
 
@@ -1025,10 +1222,12 @@ select {
 /* Estilos para pantalla de logros */
 .achievements-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
     margin-top: 20px;
     padding: 0 10px;
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 .achievements-counter {
@@ -1066,8 +1265,8 @@ select {
 
 .achievement-card {
     background-color: var(--dark-accent);
-    padding: 15px;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 8px;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -1076,7 +1275,8 @@ select {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    height: 140px;
+    min-height: 120px;
+    height: auto;
 }
 
 .achievement-card:hover {
