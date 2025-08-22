@@ -29,13 +29,21 @@ class Leaderboard {
     // Get top scores
     async getTopScores() {
         try {
+            console.log('Fetching leaderboard from:', this.apiUrl);
             const response = await fetch(this.apiUrl);
             
+            console.log('Response status:', response.status);
+            console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+            
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                const errorText = await response.text();
+                console.error('API Error Response:', errorText);
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
             }
 
-            return await response.json();
+            const data = await response.json();
+            console.log('Leaderboard data received:', data);
+            return data;
         } catch (error) {
             console.error('Error fetching leaderboard:', error);
             throw error;
@@ -152,7 +160,20 @@ class Leaderboard {
 
         } catch (error) {
             console.error('Error showing leaderboard:', error);
-            alert('❌ Error al cargar el ranking. Inténtalo más tarde.');
+            
+            // Show more specific error message
+            let errorMessage = '❌ Error al cargar el ranking. ';
+            if (error.message.includes('fetch')) {
+                errorMessage += 'Problemas de conexión.';
+            } else if (error.message.includes('500')) {
+                errorMessage += 'Error del servidor.';
+            } else if (error.message.includes('404')) {
+                errorMessage += 'API no encontrada.';
+            } else {
+                errorMessage += 'Inténtalo más tarde.';
+            }
+            
+            alert(errorMessage + '\n\nDetalles: ' + error.message);
         }
     }
 

@@ -13,22 +13,72 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
+      // Check if KV is available
+      if (!kv) {
+        console.error('KV not available - returning demo data');
+        // Return demo data when KV is not available
+        return res.status(200).json([
+          {
+            id: "demo1",
+            playerName: "CodeMaster",
+            score: 2500,
+            level: 8,
+            achievementsUnlocked: 5,
+            gameMode: "normal",
+            timestamp: new Date().toISOString(),
+            rank: 1
+          },
+          {
+            id: "demo2", 
+            playerName: "EmojiWiz",
+            score: 2200,
+            level: 7,
+            achievementsUnlocked: 4,
+            gameMode: "normal",
+            timestamp: new Date().toISOString(),
+            rank: 2
+          }
+        ]);
+      }
+
       // Get top 10 scores
-      const leaderboard = await kv.zrevrange('leaderboard', 0, 9, {
-        withScores: true
-      });
+      let leaderboard;
+      try {
+        leaderboard = await kv.zrevrange('leaderboard', 0, 9, {
+          withScores: true
+        });
+      } catch (kvError) {
+        console.error('KV operation failed:', kvError);
+        // Return empty array if KV fails
+        return res.status(200).json([]);
+      }
+      
+      console.log('Raw leaderboard data:', leaderboard);
+      
+      // Handle empty leaderboard
+      if (!leaderboard || leaderboard.length === 0) {
+        console.log('No scores found in leaderboard');
+        return res.status(200).json([]);
+      }
       
       // Convert to array of objects
       const scores = [];
       for (let i = 0; i < leaderboard.length; i += 2) {
-        const playerData = JSON.parse(leaderboard[i]);
-        scores.push({
-          ...playerData,
-          score: parseInt(leaderboard[i + 1]),
-          rank: Math.floor(i / 2) + 1
-        });
+        try {
+          const playerData = JSON.parse(leaderboard[i]);
+          scores.push({
+            ...playerData,
+            score: parseInt(leaderboard[i + 1]),
+            rank: Math.floor(i / 2) + 1
+          });
+        } catch (parseError) {
+          console.error('Error parsing player data:', parseError, leaderboard[i]);
+          // Skip invalid entries
+          continue;
+        }
       }
       
+      console.log('Processed scores:', scores.length);
       res.status(200).json(scores);
       
     } else if (req.method === 'POST') {
@@ -69,7 +119,15 @@ export default async function handler(req, res) {
     }
   } catch (error) {
     console.error('Leaderboard API error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    res.status(500).json({ 
+      error: 'Internal server error',
+      debug: process.env.NODE_ENV === 'development' ? error.message : 'Check server logs'
+    });
   }
 }
 
