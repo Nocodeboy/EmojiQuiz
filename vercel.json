@@ -3,10 +3,5 @@
   "name": "emojiquiz",
   "buildCommand": "echo 'Static site - no build needed'",
   "outputDirectory": ".",
-  "installCommand": "npm install",
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  "installCommand": "npm install"
 }
