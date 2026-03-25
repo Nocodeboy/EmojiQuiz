@@ -1,149 +1,163 @@
-# 🎮 EmojiQuiz - Juego Educativo Retro
+# 🎮 EmojiQuiz - El Juego de Emojis Más Adictivo
 
-Un juego educativo interactivo donde debes adivinar conceptos, películas, países y más usando únicamente emojis. Con estética retro y efectos visuales cyberpunk.
+**¿Puedes adivinar películas, países, artistas y más solo con emojis?** EmojiQuiz es un juego educativo con estética retro cyberpunk que pondrá a prueba tu ingenio. 450+ preguntas en 10 categorías, logros, power-ups y clasificación online.
 
-![EmojiQuiz](https://img.shields.io/badge/Version-1.0.2-blue) ![Status](https://img.shields.io/badge/Status-Live-brightgreen) ![License](https://img.shields.io/badge/License-MIT-yellow)
+![EmojiQuiz](https://img.shields.io/badge/Version-1.0.2-blue) ![Status](https://img.shields.io/badge/Status-Live-brightgreen) ![License](https://img.shields.io/badge/License-MIT-yellow) ![Questions](https://img.shields.io/badge/Preguntas-450+-purple)
+
+## 🚀 Jugar Ahora
+
+**[🎮 emojiquiz.vercel.app](https://emojiquiz.vercel.app)**
 
 ## 🌟 Características
 
-### 🎯 **Gameplay**
-- **Múltiples categorías**: Películas, países, historia, ciencia, literatura, tecnología
-- **Sistema de puntuación avanzado**: Bonificaciones por tiempo y rachas consecutivas
-- **Power-ups estratégicos**: 50:50, tiempo extra, pista adicional
-- **Sistema de logros**: Desbloquea achievements según tu progreso
-- **Progresión de niveles**: Desbloquea nuevas categorías al avanzar
+### 🎯 Gameplay
+- **10 categorías**: Películas, Países, Historia, Ciencia, Literatura, Tecnología, Comida, Música, Deportes, Animales
+- **450+ preguntas** con 3 niveles de dificultad (fácil, medio, difícil)
+- **Sistema de puntuación avanzado**: Bonificaciones por tiempo, rachas y nivel
+- **4 power-ups estratégicos**: 50:50, Tiempo Extra, Pista Adicional
+- **20 logros** desbloqueables según tu progreso
+- **Progresión de niveles**: Desbloquea categorías al avanzar
+- **Clasificación online** con ranking de jugadores
 
-### 🎨 **Estética Retro/Cyberpunk**
-- **3 fondos animados**:
-  - 🌐 **Grid Neón**: Cuadrícula tipo Tron con perspectiva 3D
-  - 😊 **Emojis Pixel**: Emojis flotantes en estilo pixel art
-  - ✨ **Nebulosa Pixel**: Campo de estrellas pixeladas con efectos nebulosa
-- **Efectos CRT opcionales**
+### 🎨 Estética Retro/Cyberpunk
+- **3 fondos animados**: Grid Neón (tipo Tron), Emojis Pixel flotantes, Nebulosa de estrellas
+- **Efectos CRT opcionales** (líneas de escaneo retro)
 - **Tipografía pixel** con fuente Press Start 2P
-- **Paleta de colores cyberpunk**
+- **Paleta de colores cyberpunk** (morado, rojo, cian)
 
-### 🌐 **Multiidioma**
-- **Español** e **Inglés** completamente soportados
-- Traducciones dinámicas de interfaz y contenido
+### 🌐 Multiidioma
+- Español e Inglés completamente soportados
 - Cambio de idioma en tiempo real
 
-### 🎵 **Audio**
-- Efectos de sonido inmersivos
-- Música de fondo ambiental
-- Controles de volumen independientes
-- Audio responsive a las acciones del juego
+### 🎵 Audio Inmersivo
+- 8 efectos de sonido + música de fondo ambiental
+- Controles de volumen independientes para efectos y música
 
-## 🚀 Demo en Vivo
+## 📊 Categorías
 
-**[🎮 Jugar EmojiQuiz](https://emojiquiz.vercel.app)**
+| Categoría | Icono | Preguntas | Desbloqueo |
+|-----------|-------|-----------|------------|
+| Películas | 🎬 | 45 | Desde el inicio |
+| Países | 🌍 | 45 | Desde el inicio |
+| Historia | 📜 | 45 | Desde el inicio |
+| Ciencia | 🔬 | 45 | Desde el inicio |
+| Comida | 🍕 | 45 | Desde el inicio |
+| Deportes | ⚽ | 45 | Desde el inicio |
+| Literatura | 📚 | 45 | Nivel 2 |
+| Tecnología | 💻 | 45 | Nivel 2 |
+| Música | 🎵 | 45 | Nivel 3 |
+| Animales | 🐾 | 45 | Nivel 3 |
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Tecnologías
 
 - **Frontend**: HTML5, CSS3, JavaScript ES6+
-- **Módulos**: ES6 Modules para arquitectura modular
-- **Animaciones**: CSS animations y keyframes
+- **Módulos**: ES6 Modules
+- **Animaciones**: CSS animations + keyframes
 - **Audio**: Web Audio API
-- **Storage**: LocalStorage para persistencia
-- **Fonts**: Google Fonts (Press Start 2P)
-- **Icons**: Font Awesome
+- **Persistencia**: LocalStorage
+- **Ranking**: Vercel KV (Redis)
+- **Deploy**: Vercel
+- **Fuentes**: Google Fonts (Press Start 2P)
+- **Iconos**: Font Awesome 6
 
 ## 📦 Instalación Local
 
-1. **Clona el repositorio**:
-   ```bash
-   git clone https://github.com/Nocodeboy/EmojiQuiz.git
-   cd EmojiQuiz
-   ```
+```bash
+# Clonar
+git clone https://github.com/Nocodeboy/EmojiQuiz.git
+cd EmojiQuiz
 
-2. **Sirve los archivos** (necesario por ES6 modules):
-   ```bash
-   # Con Python
-   python -m http.server 8000
-   
-   # Con Node.js
-   npx serve .
-   
-   # Con cualquier servidor local
-   ```
+# Servir (necesario por ES6 modules)
+npx serve "EmojiQuiz - v1.0.2"
 
-3. **Abre en navegador**:
-   ```
-   http://localhost:8000
-   ```
+# Abrir en navegador
+open http://localhost:3000
+```
 
 ## 🎮 Cómo Jugar
 
-1. **🚀 Inicia el juego** haciendo clic en "JUGAR"
-2. **👀 Observa los emojis** que aparecen en pantalla
-3. **🤔 Deduce** qué representan los emojis juntos
-4. **✅ Selecciona** la respuesta correcta entre las opciones
-5. **⏰ Responde rápido** para obtener bonus de tiempo
-6. **🔥 Mantén rachas** para multiplicar tus puntos
-7. **🆙 Sube de nivel** para desbloquear nuevas categorías
+1. **Pulsa JUGAR** para empezar
+2. **Observa los emojis** que aparecen en pantalla
+3. **Deduce** qué representan juntos
+4. **Selecciona** la respuesta correcta entre 4 opciones
+5. **Responde rápido** para obtener bonus de tiempo
+6. **Mantén rachas** para multiplicar tus puntos
+7. **Sube de nivel** para desbloquear nuevas categorías
 
-### 💪 Power-ups Disponibles
+### 💪 Power-ups
 
-- **50:50** - Elimina dos respuestas incorrectas
-- **⏰ Tiempo Extra** - Añade 10 segundos al temporizador
-- **💡 Pista Extra** - Muestra un emoji adicional como ayuda
+| Power-up | Descripción | Cantidad |
+|----------|-------------|----------|
+| ✂️ 50:50 | Elimina 2 respuestas incorrectas | 3 |
+| ⏱️ Tiempo Extra | Añade 10 segundos | 2 |
+| 💡 Pista Extra | Muestra un emoji adicional | 3 |
 
-## 🏗️ Arquitectura del Proyecto
+## 🏗️ Arquitectura
 
 ```
-EmojiQuiz/
-├── 📄 index.html              # Página principal
-├── 🎨 css/
-│   ├── styles.css             # Estilos principales
-│   └── backgrounds.css        # Fondos animados
-├── ⚡ js/
-│   ├── main.js               # Punto de entrada
-│   ├── game.js               # Lógica del juego
-│   ├── ui.js                 # Interfaz de usuario
+EmojiQuiz - v1.0.2/
+├── index.html                # Página principal
+├── css/
+│   ├── styles.css            # Estilos principales + responsive
+│   └── backgrounds.css       # Fondos animados (neon, emojis, nebula)
+├── js/
+│   ├── main.js               # Punto de entrada + event listeners
+│   ├── game.js               # Lógica del juego + logros + estado
+│   ├── ui.js                 # Interfaz + transiciones + feedback
 │   ├── audio.js              # Sistema de audio
-│   ├── backgrounds.js        # Gestor de fondos
-│   └── i18n/
-│       └── translations.js   # Sistema de traducciones
-├── 📊 data/
-│   ├── index.js              # Agregador de datos
-│   ├── categories.js         # Configuración de categorías
-│   ├── achievements.js       # Sistema de logros
-│   ├── powerups.js          # Configuración de power-ups
-│   ├── settings.js          # Configuración del juego
-│   └── questions/           # Preguntas por categoría
-└── 🎵 assets/
-    ├── sounds/              # Efectos de sonido
-    └── images/              # Recursos gráficos
+│   ├── backgrounds.js        # Gestor de fondos animados
+│   ├── leaderboard.js        # Sistema de ranking online
+│   └── i18n/translations.js  # Traducciones ES/EN
+├── data/
+│   ├── index.js              # Agregador de datos + utilidades
+│   ├── categories.js         # 10 categorías configuradas
+│   ├── achievements.js       # 20 logros desbloqueables
+│   ├── powerups.js           # Configuración de power-ups
+│   ├── settings.js           # Dificultad, puntuación, vidas
+│   └── questions/            # 450+ preguntas organizadas por categoría
+│       ├── movies.js
+│       ├── countries.js
+│       ├── history.js
+│       ├── science.js
+│       ├── literature.js
+│       ├── technology.js
+│       ├── food.js
+│       ├── music.js
+│       ├── sports.js
+│       └── animals.js
+├── api/leaderboard/           # API serverless para ranking (Vercel KV)
+├── assets/sounds/             # 9 efectos de sonido + música de fondo
+└── scripts/                   # Validación y utilidades de datos
+```
+
+## 🧪 Validación de Datos
+
+```bash
+cd "EmojiQuiz - v1.0.2"
+
+# Validar integridad de todas las preguntas
+node scripts/validateData.js
+
+# Buscar duplicados
+node scripts/checkDuplicates.js
+
+# Contar preguntas por categoría
+node scripts/countQuestions.js
 ```
 
 ## 🤝 Contribuir
 
-¡Las contribuciones son bienvenidas! Algunas ideas:
+¡Las contribuciones son bienvenidas! Ver [CONTRIBUTING.md](EmojiQuiz%20-%20v1.0.2/CONTRIBUTING.md) para detalles.
 
-- 📝 **Agregar más preguntas** a las categorías existentes
-- 🆕 **Crear nuevas categorías** (deportes, música, arte, etc.)
-- 🌍 **Añadir más idiomas** (francés, portugués, etc.)
-- 🎨 **Diseñar nuevos fondos animados**
-- 🎵 **Contribuir efectos de sonido**
-- 🏆 **Proponer nuevos logros**
-
-### Proceso de Contribución
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-categoria`)
-3. Commit tus cambios (`git commit -m 'Agregar categoría de deportes'`)
-4. Push a la rama (`git push origin feature/nueva-categoria`)
-5. Abre un Pull Request
+Ideas:
+- 📝 Agregar más preguntas a las categorías existentes
+- 🌍 Añadir más idiomas (francés, portugués, etc.)
+- 🎨 Diseñar nuevos fondos animados
+- 🏆 Proponer nuevos logros
 
 ## 📝 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver archivo `LICENSE` para más detalles.
-
-## 🙏 Agradecimientos
-
-- **Emojis**: Basado en Unicode Emoji Standard
-- **Sonidos**: Efectos de sonido retro/arcade
-- **Fuentes**: Press Start 2P de Google Fonts
-- **Inspiración**: Clásicos juegos de trivia y estética cyberpunk
+MIT - Ver archivo `LICENSE` para más detalles.
 
 ## 📞 Contacto
 
@@ -152,6 +166,4 @@ Este proyecto está bajo la Licencia MIT. Ver archivo `LICENSE` para más detall
 
 ---
 
-### 🎯 ¡Desarrollado con 💖 para la comunidad!
-
-**⭐ Si te gusta el proyecto, no olvides darle una estrella en GitHub ⭐**
+**⭐ Si te gusta el proyecto, dale una estrella en GitHub ⭐**

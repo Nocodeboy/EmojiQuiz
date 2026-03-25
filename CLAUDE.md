@@ -16,21 +16,31 @@ The codebase is organized with two main versions in separate directories:
 
 **Core JavaScript Modules:**
 - `js/main.js` - Entry point, initializes game and sets up event listeners
-- `js/game.js` - Game logic, scoring, state management, and progression
+- `js/game.js` - Game logic, scoring, state management, achievements, and progression
 - `js/ui.js` - UI management, screen transitions, and visual feedback
 - `js/audio.js` - Audio system for sound effects and background music
+- `js/leaderboard.js` - Online ranking system with Vercel KV integration
+- `js/backgrounds.js` - Animated background manager (neon grid, pixel emojis, nebula)
 
 **Data System:**
 - `data/index.js` - Main data aggregator with utility functions
-- `data/categories.js` - Game categories configuration
-- `data/questions/` - Question data organized by category and difficulty
-- `data/achievements.js` - Achievement system definitions
-- `data/powerups.js` - Power-up configurations
+- `data/categories.js` - 10 game categories configuration
+- `data/questions/` - Question data organized by category and difficulty (10 files, ~450 questions)
+- `data/achievements.js` - 20 achievement definitions
+- `data/powerups.js` - Power-up configurations (50:50, Extra Time, Extra Hint)
 - `data/settings.js` - Game settings and difficulty configurations
+
+**Categories (10 total):**
+- movies, countries, history, science, literature, technology (original 6)
+- food, music, sports, animals (added in latest update)
+- Each category has 15 questions per difficulty (easy/medium/hard) = 45 per category
 
 **Internationalization:**
 - `data/translations/` - Translation files for multiple languages
-- `js/i18n/translations.js` - Translation management system
+- `js/i18n/translations.js` - Translation management system (ES/EN)
+
+**API:**
+- `api/leaderboard/index.js` - Vercel serverless function for ranking (uses @vercel/kv)
 
 ## Development Commands
 
@@ -52,11 +62,6 @@ node scripts/countQuestions.js
 node scripts/count.js
 ```
 
-**Data Migration:**
-```bash
-node scripts/migrateData.js
-```
-
 ## Coding Standards
 
 **Module System:**
@@ -72,11 +77,9 @@ node scripts/migrateData.js
 - Use `const` and `let`, avoid `var`
 - Prefer arrow functions and template literals
 - Use destructuring for better readability
-- Follow functional programming patterns when appropriate
 
 **CSS:**
 - Use BEM methodology for class naming
-- Order properties: positioning > dimensions > margins/padding > typography > visual effects
 - Use CSS custom properties for theming
 
 ## Game Architecture
@@ -87,31 +90,35 @@ node scripts/migrateData.js
 - Settings persisted across sessions
 
 **Question System:**
-- Questions organized by category and difficulty (easy/medium/hard)
+- 10 categories with 15 questions per difficulty (easy/medium/hard)
+- 450+ total questions validated and deduplicated
 - Dynamic question loading based on player level
-- Built-in validation and duplicate detection
+- Built-in validation and duplicate detection scripts
+
+**Achievement System (20 achievements):**
+- Category-specific: one per category (10 total)
+- Streak: 3x, 10x combos
+- Score milestones: 1000, 5000 points
+- Level: reach level 2, level 3
+- Master: 5+ correct in every category
+- Each achievement has a condition function in `game.js` `checkAchievements()`
 
 **Scoring Algorithm:**
-- Base points vary by difficulty level
+- Base points vary by difficulty (100/150/200)
 - Time bonus for quick answers
 - Streak multipliers for consecutive correct answers
 - Level bonuses for progression
 
-**Power-up System:**
-- 50:50 - Removes two incorrect answers
-- Extra Time - Adds 10 seconds to timer
-- Extra Hint - Shows additional emoji clue
+**Ranking System:**
+- Online leaderboard via Vercel KV (Redis)
+- localStorage fallback when server unavailable
+- Requires KV_REST_API_URL and KV_REST_API_TOKEN environment variables in Vercel
 
 ## Testing and Validation
 
 Before making changes to game data:
 1. Run `validateData.js` to check data integrity
 2. Use duplicate detection scripts to avoid content conflicts
-3. Test question loading across different categories and difficulties
-
-The validation system checks for:
-- Complete question structure (emojis, answer, options)
-- Correct answer present in options array
-- No duplicate options within questions
-- Valid achievement conditions
-- Category consistency
+3. Verify all answers exist in their options arrays
+4. Check that emojis make logical sense for their answers
+5. Ensure countries category only has countries (not cities/regions)
