@@ -11,12 +11,30 @@ export default async function handler(req, res) {
     return;
   }
 
+  // Check if KV environment variables are configured
+  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+    console.warn('KV not configured - using localStorage fallback mode');
+
+    if (req.method === 'GET') {
+      return res.status(200).json([]);
+    }
+
+    if (req.method === 'POST') {
+      const { playerName, score } = req.body;
+      return res.status(200).json({
+        message: 'Score saved locally (KV not configured)',
+        rank: null,
+        playerData: { playerName, score, timestamp: new Date().toISOString() },
+        localOnly: true
+      });
+    }
+  }
+
   // Log environment info
   console.log('Leaderboard API called:', {
     method: req.method,
     hasKvUrl: !!process.env.KV_REST_API_URL,
-    hasKvToken: !!process.env.KV_REST_API_TOKEN,
-    kvUrlPreview: process.env.KV_REST_API_URL ? process.env.KV_REST_API_URL.substring(0, 30) + '...' : 'undefined'
+    hasKvToken: !!process.env.KV_REST_API_TOKEN
   });
 
   try {

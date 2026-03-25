@@ -68,6 +68,34 @@ export const achievements = [
         condition: "correctAnswersByCategory.technology >= 10"
     },
     {
+        id: "foodie",
+        name: "Foodie",
+        description: "Responde correctamente 10 preguntas de comida",
+        icon: "🍕",
+        condition: "correctAnswersByCategory.food >= 10"
+    },
+    {
+        id: "music_fan",
+        name: "Melómano",
+        description: "Responde correctamente 10 preguntas de música",
+        icon: "🎵",
+        condition: "correctAnswersByCategory.music >= 10"
+    },
+    {
+        id: "sports_star",
+        name: "Deportista",
+        description: "Responde correctamente 10 preguntas de deportes",
+        icon: "⚽",
+        condition: "correctAnswersByCategory.sports >= 10"
+    },
+    {
+        id: "animal_lover",
+        name: "Amante Animal",
+        description: "Responde correctamente 10 preguntas de animales",
+        icon: "🐾",
+        condition: "correctAnswersByCategory.animals >= 10"
+    },
+    {
         id: "perfect_streak",
         name: "Perfeccionista",
         description: "Consigue una racha de 10 respuestas correctas",
@@ -83,10 +111,10 @@ export const achievements = [
     },
     {
         id: "master_of_all",
-        name: "Maestro de Todo",
+        name: "Gran Maestro",
         description: "Responde correctamente al menos 5 preguntas de cada categoría",
         icon: "👑",
-        condition: "correctAnswersByCategory.movies >= 5 && correctAnswersByCategory.countries >= 5 && correctAnswersByCategory.history >= 5 && correctAnswersByCategory.science >= 5 && correctAnswersByCategory.literature >= 5 && correctAnswersByCategory.technology >= 5"
+        condition: "correctAnswersByCategory.movies >= 5 && correctAnswersByCategory.countries >= 5 && correctAnswersByCategory.history >= 5 && correctAnswersByCategory.science >= 5 && correctAnswersByCategory.literature >= 5 && correctAnswersByCategory.technology >= 5 && correctAnswersByCategory.food >= 5 && correctAnswersByCategory.music >= 5 && correctAnswersByCategory.sports >= 5 && correctAnswersByCategory.animals >= 5"
     },
     {
         id: "emoji_wizard",

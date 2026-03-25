@@ -141,10 +141,33 @@ class Leaderboard {
 
             } catch (error) {
                 console.error('Submit failed:', error);
+
+                // Fallback: save to localStorage
+                try {
+                    const localScores = JSON.parse(localStorage.getItem('emojiQuiz_localRanking') || '[]');
+                    localScores.push({
+                        playerName,
+                        score: gameData.score,
+                        level: gameData.level,
+                        timestamp: new Date().toISOString()
+                    });
+                    localScores.sort((a, b) => b.score - a.score);
+                    localStorage.setItem('emojiQuiz_localRanking', JSON.stringify(localScores.slice(0, 50)));
+                    statusDiv.innerHTML = `<span class="success">✅ Puntuación guardada localmente</span>`;
+                    setTimeout(() => {
+                        document.body.removeChild(modal);
+                    }, 2000);
+                    return;
+                } catch (localError) {
+                    console.error('Local save also failed:', localError);
+                }
+
                 let errorMsg = '❌ Error al guardar. ';
-                
+
                 if (error.message.includes('400')) {
                     errorMsg += 'Datos inválidos.';
+                } else if (error.message.includes('503') || error.message.includes('KV')) {
+                    errorMsg += 'Base de datos no disponible.';
                 } else if (error.message.includes('500')) {
                     errorMsg += 'Error del servidor.';
                 } else if (error.message.includes('fetch')) {
@@ -152,10 +175,9 @@ class Leaderboard {
                 } else {
                     errorMsg += 'Inténtalo de nuevo.';
                 }
-                
+
                 statusDiv.innerHTML = `<span class="error">${errorMsg}</span>`;
-                statusDiv.innerHTML += `<br><small>Detalle: ${error.message}</small>`;
-                
+
                 submitBtn.disabled = false;
                 submitBtn.textContent = '💾 Guardar en Ranking';
             }
