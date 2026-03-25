@@ -6,8 +6,8 @@
 export const sportsQuestions = {
     easy: [
         { emojis: ["⚽", "🏆", "🌍", "👥"], answer: "Copa del Mundo", options: ["Copa del Mundo", "Champions League", "Eurocopa", "Copa América"] },
-        { emojis: ["🏀", "🥇", "🇺🇸", "🕺"], answer: "Baloncesto", options: ["Baloncesto", "Voleibol", "Balonmano", "Rugby"] },
-        { emojis: ["🎾", "🏆", "🎾", "👨"], answer: "Tenis", options: ["Tenis", "Pádel", "Bádminton", "Squash"] },
+        { emojis: ["🏀", "🥇", "🇺🇸", "🏟️"], answer: "Baloncesto", options: ["Baloncesto", "Voleibol", "Balonmano", "Rugby"] },
+        { emojis: ["🎾", "🏆", "🎾", "🏟️"], answer: "Tenis", options: ["Tenis", "Pádel", "Bádminton", "Squash"] },
         { emojis: ["🏊‍♂️", "🌊", "🥇", "🏅"], answer: "Natación", options: ["Natación", "Waterpolo", "Surf", "Buceo"] },
         { emojis: ["🏃‍♂️", "🏅", "🥅", "⏱️"], answer: "Atletismo", options: ["Atletismo", "Maratón", "Sprint", "Triatlón"] },
         { emojis: ["⚽", "👨", "🥇", "🇦🇷"], answer: "Messi", options: ["Messi", "Maradona", "Ronaldo", "Neymar"] },
@@ -17,7 +17,7 @@ export const sportsQuestions = {
         { emojis: ["🏄‍♂️", "🌊", "🏖️", "☀️"], answer: "Surf", options: ["Surf", "Windsurf", "Bodyboard", "Kitesurf"] },
         { emojis: ["🚴‍♂️", "🏔️", "🏅", "🇫🇷"], answer: "Ciclismo", options: ["Ciclismo", "Triatlón", "BMX", "Motociclismo"] },
         { emojis: ["🏌️", "⛳", "🏆", "🌿"], answer: "Golf", options: ["Golf", "Cricket", "Polo", "Croquet"] },
-        { emojis: ["🏓", "🏅", "🥢", "🎵"], answer: "Ping Pong", options: ["Ping Pong", "Bádminton", "Squash", "Tenis de Mesa"] },
+        { emojis: ["🏓", "🏅", "🏆", "🔁"], answer: "Ping Pong", options: ["Ping Pong", "Bádminton", "Squash", "Tenis de Mesa"] },
         { emojis: ["🏇", "🐎", "🏆", "🏁"], answer: "Carreras de Caballos", options: ["Carreras de Caballos", "Polo", "Equitación", "Rodeo"] },
         { emojis: ["🤼‍♂️", "🥋", "🥇", "🏅"], answer: "Artes Marciales", options: ["Artes Marciales", "Boxeo", "Lucha", "Esgrima"] }
     ],
@@ -43,7 +43,7 @@ export const sportsQuestions = {
         { emojis: ["🎾", "👑", "🇷🇸", "💪"], answer: "Novak Djokovic", options: ["Novak Djokovic", "Roger Federer", "Rafael Nadal", "Andy Murray"] },
         { emojis: ["🏃‍♂️", "⚡", "🇯🇲", "🥇"], answer: "Usain Bolt", options: ["Usain Bolt", "Carl Lewis", "Jesse Owens", "Tyson Gay"] },
         { emojis: ["🥊", "👑", "🇺🇸", "🐝"], answer: "Muhammad Ali", options: ["Muhammad Ali", "Mike Tyson", "Floyd Mayweather", "Manny Pacquiao"] },
-        { emojis: ["🏎️", "🏁", "🇬🇧", "🥇"], answer: "Fórmula 1", options: ["Fórmula 1", "NASCAR", "Rally", "IndyCar"] },
+        { emojis: ["🏎️", "🏁", "🌍", "🥇"], answer: "Fórmula 1", options: ["Fórmula 1", "NASCAR", "Rally", "IndyCar"] },
         { emojis: ["🏀", "🐍", "🇺🇸", "✨"], answer: "Kobe Bryant", options: ["Kobe Bryant", "Tim Duncan", "Kevin Garnett", "Allen Iverson"] },
         { emojis: ["🇫🇷", "🏎️", "🏁", "🥇"], answer: "24 Horas de Le Mans", options: ["24 Horas de Le Mans", "Gran Premio de Mónaco", "Rally Dakar", "Gran Premio de Francia"] },
         { emojis: ["🏊‍♀️", "🏅", "🌊", "👩"], answer: "Natación Sincronizada", options: ["Natación Sincronizada", "Waterpolo Femenino", "Saltos de Trampolín", "Buceo Olímpico"] },

@@ -10,7 +10,7 @@ export const scienceQuestions = {
         { emojis: ["🧬", "🧪", "👨‍🔬", "🐑"], answer: "Clonación", options: ["Evolución", "Genética", "Clonación", "ADN"] },
         { emojis: ["☢️", "⚛️", "💥"], answer: "Energía Nuclear", options: ["Reacción Química", "Fusión Nuclear", "Energía Nuclear", "Radiactividad"] },
         { emojis: ["🦖", "🌋", "☄️"], answer: "Extinción de los Dinosaurios", options: ["Era Mesozoica", "Extinción de los Dinosaurios", "Paleontología", "Evolución"] },
-        { emojis: ["🐵", "🧬", "��", "🌳"], answer: "Darwin", options: ["Darwin", "Mendel", "Lamarck", "Wallace"] },
+        { emojis: ["🐵", "🧬", "👨", "🌳"], answer: "Darwin", options: ["Darwin", "Mendel", "Lamarck", "Wallace"] },
         { emojis: ["🍎", "⬇️", "🌍", "📏"], answer: "Primera Ley de Newton", options: ["Primera Ley de Newton", "Ley de Gravitación Universal", "Ley de Einstein", "Ley de Galileo"] },
         { emojis: ["🧬", "🔄", "🧪", "🔬"], answer: "ADN", options: ["ADN", "ARN", "Proteínas", "Cromosomas"] },
         { emojis: ["🌡️", "🔥", "❄️", "📊"], answer: "Termómetro", options: ["Termómetro", "Barómetro", "Higrómetro", "Anemómetro"] },

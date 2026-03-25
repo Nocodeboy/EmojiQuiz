@@ -40,7 +40,7 @@ export const literatureQuestions = {
     ],
     hard: [
         { emojis: ["🏠", "🧠", "💊", "👁️"], answer: "Un Mundo Feliz", options: ["1984", "Un Mundo Feliz", "Fahrenheit 451", "La Naranja Mecánica"] },
-        { emojis: ["🦋", "⏳", "🦖", "🔄"], answer: "El Efecto Mariposa", options: ["El Efecto Mariposa", "Viajes en el Tiempo", "Jurassic Park", "La Máquina del Tiempo"] },
+        { emojis: ["⏳", "🔮", "🌀", "🕰️"], answer: "La Máquina del Tiempo", options: ["La Máquina del Tiempo", "Viajes en el Tiempo", "El Fin de la Eternidad", "Crónicas Marcianas"] },
         { emojis: ["🧓", "🌊", "🎣", "🦈"], answer: "El Viejo y el Mar", options: ["Moby Dick", "El Viejo y el Mar", "20.000 Leguas de Viaje Submarino", "La Perla"] },
         { emojis: ["👨‍👩‍👧‍👦", "💔", "⚔️", "🇷🇺"], answer: "Guerra y Paz", options: ["Guerra y Paz", "Ana Karenina", "Crimen y Castigo", "Los Hermanos Karamazov"] },
         { emojis: ["📚", "🏛️", "🌆", "🇮🇪"], answer: "Ulises", options: ["Ulises", "Dublineses", "Retrato del Artista Adolescente", "Finnegans Wake"] },

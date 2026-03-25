@@ -44,14 +44,14 @@ export const animalsQuestions = {
         { emojis: ["🦬", "🌍", "💨", "🏔️"], answer: "Bisonte", options: ["Bisonte", "Búfalo", "Yak", "Toro"] },
         { emojis: ["🐟", "💥", "⚡", "🌊"], answer: "Anguila Eléctrica", options: ["Anguila Eléctrica", "Pez Torpedo", "Mantarraya", "Pez Gato Eléctrico"] },
         { emojis: ["🐍", "💪", "🌊", "🏝️"], answer: "Anaconda", options: ["Anaconda", "Pitón", "Boa Constrictor", "King Cobra"] },
-        { emojis: ["🦔", "🛡️", "🌍", "💤"], answer: "Pangolín", options: ["Pangolín", "Armadillo", "Erizo", "Puercoespín"] },
+        { emojis: ["🐾", "🛡️", "🌍", "🔒"], answer: "Pangolín", options: ["Pangolín", "Armadillo", "Erizo", "Puercoespín"] },
         { emojis: ["🐟", "💡", "🌊", "🌙"], answer: "Pez Abisal", options: ["Pez Abisal", "Medusa Luminiscente", "Calamar Gigante", "Pez Linterna"] },
         { emojis: ["🦋", "👑", "🌿", "🇲🇽"], answer: "Mariposa Monarca", options: ["Mariposa Monarca", "Mariposa Morpho", "Mariposa Atlas", "Polilla Luna"] },
         { emojis: ["🦨", "💨", "⚠️", "🌿"], answer: "Zorrillo", options: ["Zorrillo", "Tejón", "Comadreja", "Mapache"] },
         { emojis: ["🐟", "🛡️", "💣", "🌊"], answer: "Pez Globo", options: ["Pez Globo", "Pez Erizo", "Pez Cofre", "Pez Piedra"] },
         { emojis: ["🦗", "🎵", "🌿", "🌙"], answer: "Grillo", options: ["Grillo", "Cigarra", "Langosta", "Saltamontes"] },
         { emojis: ["🦅", "🏔️", "🇵🇪", "💪"], answer: "Cóndor Andino", options: ["Cóndor Andino", "Águila Arpía", "Buitre Leonado", "Halcón Peregrino"] },
-        { emojis: ["🦠", "🌊", "🌿", "💪"], answer: "Tardígrado", options: ["Tardígrado", "Ameba", "Paramecio", "Rotífero"] },
+        { emojis: ["🔬", "💪", "🌊", "☀️"], answer: "Tardígrado", options: ["Tardígrado", "Ameba", "Paramecio", "Rotífero"] },
         { emojis: ["🐦", "🏃‍♂️", "🇦🇺", "⚠️"], answer: "Casuario", options: ["Casuario", "Avestruz", "Emú", "Kiwi"] },
         { emojis: ["🦎", "🌿", "🇲🇬", "🔄"], answer: "Camaleón de Madagascar", options: ["Camaleón de Madagascar", "Gecko Tokay", "Iguana Verde", "Dragón Barbudo"] }
     ]
