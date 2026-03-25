@@ -471,6 +471,7 @@ class Game {
             maxStreak: this.maxStreak,
             level: this.level,
             score: this.score,
+            lives: this.lives,
             correctAnswersByCategory: this.correctAnswersByCategory
         };
         
@@ -487,7 +488,19 @@ class Game {
             scientist: () => context.correctAnswersByCategory.science >= 10,
             bookworm: () => context.correctAnswersByCategory.literature >= 10,
             tech_savvy: () => context.correctAnswersByCategory.technology >= 10,
-            perfect_streak: () => context.streak >= 10
+            foodie: () => context.correctAnswersByCategory.food >= 10,
+            music_fan: () => context.correctAnswersByCategory.music >= 10,
+            sports_star: () => context.correctAnswersByCategory.sports >= 10,
+            animal_lover: () => context.correctAnswersByCategory.animals >= 10,
+            perfect_streak: () => context.streak >= 10,
+            speed_demon: () => context.score >= 1000,
+            emoji_wizard: () => context.score >= 5000,
+            master_of_all: () => {
+                const cats = ['movies','countries','history','science','literature','technology','food','music','sports','animals'];
+                return cats.every(c => (context.correctAnswersByCategory[c] || 0) >= 5);
+            },
+            comeback_kid: () => context.lives <= 1 && context.score >= 1000,
+            explorer: () => context.level >= 3
         };
         
         if (!window.gameData) return;
@@ -753,53 +766,8 @@ class Game {
         // Actualizar estadísticas finales
         if (window.ui) window.ui.updateFinalStats(this.score, this.correctAnswers, this.wrongAnswers, this.level, this.maxStreak);
         
-        // Verificar si la puntuación es digna del leaderboard (mayor a 500 puntos)
-        if (this.score > 500 && window.leaderboard) {
-            // Preparar datos del juego para el leaderboard
-            const gameData = {
-                score: this.score,
-                level: this.level,
-                categoriesCompleted: this.getCompletedCategories(),
-                achievementsUnlocked: this.getUnlockedAchievementsCount(),
-                gameMode: this.difficulty || 'normal'
-            };
-            
-            console.log('Game over - preparing leaderboard data:', gameData);
-            console.log('Score validation:', {
-                scoreValue: this.score,
-                scoreType: typeof this.score,
-                isValidScore: typeof this.score === 'number' && !isNaN(this.score) && this.score > 0
-            });
-            
-            // Mostrar modal de envío de puntuación
-            setTimeout(() => {
-                if (window.leaderboard && window.leaderboard.showScoreSubmissionModal) {
-                    console.log('Showing score submission modal');
-                    window.leaderboard.showScoreSubmissionModal(gameData);
-                } else {
-                    console.error('Leaderboard not available or method missing');
-                }
-            }, 1000); // Pequeño delay para que el usuario vea las estadísticas primero
-        }
-        
         // Mostrar pantalla de fin del juego
         if (window.ui) window.ui.showScreen('game-over-screen');
-    }
-    
-    /**
-     * Obtiene las categorías completadas por el jugador
-     */
-    getCompletedCategories() {
-        if (!this.unlockedCategories) return [];
-        return this.unlockedCategories.filter(cat => cat !== 'general');
-    }
-    
-    /**
-     * Obtiene el número de logros desbloqueados
-     */
-    getUnlockedAchievementsCount() {
-        if (!this.unlockedAchievements) return 0;
-        return this.unlockedAchievements.length;
     }
     
     /**
