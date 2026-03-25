@@ -18,6 +18,235 @@
     box-sizing: border-box;
 }
 
+/* Leaderboard Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, var(--primary-color), var(--dark-accent));
+    border: 4px solid var(--accent-color);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+}
+
+.score-submission h2, .leaderboard h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    text-shadow: 0 0 10px var(--accent-color);
+}
+
+.final-score {
+    font-size: 2em;
+    color: var(--secondary-color);
+    margin: 15px 0;
+    text-shadow: 0 0 15px var(--secondary-color);
+}
+
+.game-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px 0;
+    font-size: 0.7em;
+}
+
+.player-name-input {
+    margin: 20px 0;
+}
+
+.player-name-input label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.8em;
+}
+
+.player-name-input input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--accent-color);
+    color: var(--text-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.8em;
+    width: 100%;
+    max-width: 300px;
+}
+
+.player-name-input input:focus {
+    outline: none;
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.submission-status {
+    margin-top: 15px;
+    font-size: 0.7em;
+}
+
+.submission-status .success {
+    color: var(--correct-color);
+}
+
+.submission-status .error {
+    color: var(--wrong-color);
+}
+
+.submission-status .info {
+    color: var(--accent-color);
+}
+
+.leaderboard-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin: 20px 0;
+}
+
+.score-item {
+    display: grid;
+    grid-template-columns: 40px 1fr 80px 60px;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.6em;
+}
+
+.score-item.rank-1 {
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05));
+    border-color: gold;
+}
+
+.score-item.rank-2 {
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.2), rgba(192, 192, 192, 0.05));
+    border-color: silver;
+}
+
+.score-item.rank-3 {
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.2), rgba(205, 127, 50, 0.05));
+    border-color: #cd7f32;
+}
+
+.rank {
+    font-weight: bold;
+    color: var(--accent-color);
+    text-align: center;
+}
+
+.player-info {
+    text-align: left;
+}
+
+.player-name {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.player-stats {
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.player-score {
+    color: var(--secondary-color);
+    font-weight: bold;
+    text-align: right;
+}
+
+.score-date {
+    font-size: 0.8em;
+    opacity: 0.6;
+    text-align: center;
+}
+
+.no-scores {
+    color: var(--accent-color);
+    font-size: 0.8em;
+    padding: 40px 20px;
+    opacity: 0.7;
+}
+
+/* Responsive adjustments for leaderboard */
+@media (max-width: 600px) {
+    .modal-overlay {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+    
+    .modal-content {
+        padding: 15px;
+        margin: 0;
+        max-height: 90vh;
+        width: 100%;
+        max-width: none;
+    }
+    
+    .score-item {
+        grid-template-columns: 30px 1fr 70px;
+        font-size: 0.5em;
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .score-date {
+        display: none;
+    }
+    
+    .final-score {
+        font-size: 1.5em;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .modal-buttons .btn {
+        width: 100%;
+        max-width: 250px;
+        padding: 12px;
+        font-size: 10px;
+    }
+    
+    .player-name-input input {
+        width: 100%;
+        font-size: 12px;
+        padding: 12px;
+    }
+    
+    .leaderboard-list {
+        max-height: 50vh;
+    }
+}
+
 body {
     font-family: 'Press Start 2P', cursive;
     background-color: var(--background-color);
@@ -25,7 +254,7 @@ body {
     line-height: 1.6;
     padding: 20px;
     overflow-x: hidden;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,6 +265,7 @@ body {
     width: 100%;
     margin: 0 auto;
     position: relative;
+    max-height: 90vh;
 }
 
 /* Estilos para pantallas */
@@ -47,7 +277,9 @@ body {
     border: 4px solid var(--primary-color);
     text-align: center;
     position: relative;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 85vh;
 }
 
 .screen::before {
@@ -646,16 +878,69 @@ select {
 
 /* Estilos para dispositivos móviles */
 @media (max-width: 600px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+        min-height: 100vh;
+    }
+    
+    #game-container {
+        max-height: none;
+        min-height: 90vh;
+    }
+    
+    .screen {
+        padding: 20px;
+        max-height: none;
+        min-height: 85vh;
+    }
+    
     .options-container {
         grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 100px; /* Espacio para el botón siguiente */
+    }
+    
+    .option {
+        padding: 15px;
+        font-size: 11px;
+        min-height: 50px;
     }
     
     h1 {
-        font-size: 28px;
+        font-size: 24px;
     }
     
     .emoji-display {
-        font-size: 54px;
+        font-size: 48px;
+        margin: 15px 0;
+    }
+    
+    .feedback {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.9);
+        padding: 10px 20px;
+        border-radius: 8px;
+        z-index: 1000;
+        width: 90%;
+        max-width: 300px;
+        text-align: center;
+        border: 2px solid var(--primary-color);
+    }
+    
+    .next-btn {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1001;
+        width: 90%;
+        max-width: 300px;
+        padding: 15px;
+        font-size: 12px;
     }
     
     .stats-summary {
@@ -667,7 +952,8 @@ select {
     }
     
     .category-card {
-        padding: 10px;
+        padding: 15px;
+        margin: 5px 0;
     }
     
     .category-icon {
@@ -675,11 +961,122 @@ select {
     }
     
     .category-name {
-        font-size: 10px;
+        font-size: 11px;
     }
     
     .instructions p, .scoring-info p {
         font-size: 10px;
+        line-height: 1.6;
+    }
+    
+    /* Achievements responsive */
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+        max-height: none;
+        padding: 5px;
+    }
+    
+    .achievement-card {
+        padding: 10px;
+        min-height: 100px;
+    }
+    
+    .achievement-icon {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    
+    .achievement-name {
+        font-size: 10px;
+        margin-bottom: 6px;
+    }
+    
+    .achievement-description {
+        font-size: 8px;
+        line-height: 1.3;
+    }
+    
+    /* Power-ups responsive */
+    .power-up-container {
+        gap: 10px;
+        margin: 10px 0;
+    }
+    
+    .power-up {
+        padding: 8px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    
+    .power-up i {
+        font-size: 14px;
+    }
+    
+    .power-up-count {
+        font-size: 8px;
+    }
+    
+    /* Timer responsive */
+    .timer-container {
+        margin: 10px 0;
+    }
+    
+    .timer-bar {
+        height: 6px;
+    }
+    
+    /* Level badge responsive */
+    .level-badge {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
+
+/* Estilos para tablets y pantallas medianas */
+@media (max-width: 768px) and (min-width: 601px) {
+    .screen {
+        padding: 25px;
+        max-height: 90vh;
+    }
+    
+    .options-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .emoji-display {
+        font-size: 60px;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+    }
+    
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 1200px) {
+    .screen {
+        padding: 40px;
+    }
+    
+    .options-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .emoji-display {
+        font-size: 80px;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 25px;
     }
 }
 
@@ -727,13 +1124,9 @@ select {
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
-    opacity: 0.8;
-    animation: particleFade 1s forwards;
-}
-
-@keyframes particleFade {
-    0% { transform: scale(0); opacity: 0.8; }
-    100% { transform: scale(1); opacity: 0; }
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 6px currentColor;
 }
 
 /* Estilos para power-ups */
@@ -829,10 +1222,12 @@ select {
 /* Estilos para pantalla de logros */
 .achievements-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
     margin-top: 20px;
     padding: 0 10px;
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 .achievements-counter {
@@ -870,8 +1265,8 @@ select {
 
 .achievement-card {
     background-color: var(--dark-accent);
-    padding: 15px;
-    border-radius: 10px;
+    padding: 12px;
+    border-radius: 8px;
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -880,7 +1275,8 @@ select {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    height: 140px;
+    min-height: 120px;
+    height: auto;
 }
 
 .achievement-card:hover {
