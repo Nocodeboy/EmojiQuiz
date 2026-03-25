@@ -53,5 +53,39 @@ export const categories = [
         unlocked: false,
         unlockLevel: 2,
         color: "#1abc9c"
+    },
+    {
+        id: "food",
+        name: "Comida",
+        icon: "🍕",
+        description: "Platos y alimentos del mundo en emojis",
+        unlocked: true,
+        color: "#e67e22"
+    },
+    {
+        id: "sports",
+        name: "Deportes",
+        icon: "⚽",
+        description: "Deportes y atletas representados con emojis",
+        unlocked: true,
+        color: "#27ae60"
+    },
+    {
+        id: "music",
+        name: "Música",
+        icon: "🎵",
+        description: "Canciones, artistas y géneros musicales",
+        unlocked: false,
+        unlockLevel: 3,
+        color: "#e91e63"
+    },
+    {
+        id: "animals",
+        name: "Animales",
+        icon: "🐾",
+        description: "Animales y vida salvaje en emojis",
+        unlocked: false,
+        unlockLevel: 3,
+        color: "#795548"
     }
 ]; 
