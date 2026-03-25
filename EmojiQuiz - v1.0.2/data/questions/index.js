@@ -9,6 +9,10 @@ import { historyQuestions } from './history.js';
 import { scienceQuestions } from './science.js';
 import { literatureQuestions } from './literature.js';
 import { technologyQuestions } from './technology.js';
+import { foodQuestions } from './food.js';
+import { musicQuestions } from './music.js';
+import { sportsQuestions } from './sports.js';
+import { animalsQuestions } from './animals.js';
 
 export const questions = {
     movies: moviesQuestions,
@@ -16,7 +20,11 @@ export const questions = {
     history: historyQuestions,
     science: scienceQuestions,
     literature: literatureQuestions,
-    technology: technologyQuestions
+    technology: technologyQuestions,
+    food: foodQuestions,
+    music: musicQuestions,
+    sports: sportsQuestions,
+    animals: animalsQuestions
 };
 
 /**
