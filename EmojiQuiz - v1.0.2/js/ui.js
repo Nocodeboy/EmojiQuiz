@@ -568,36 +568,54 @@ class UI {
      * Crea partículas de celebración
      */
     createParticles() {
-        // Crear 30 partículas
-        for (let i = 0; i < 30; i++) {
+        const container = document.getElementById('game-container') || document.body;
+        const rect = container.getBoundingClientRect();
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 3;
+
+        // Crear 15 partículas desde el centro del emoji display
+        for (let i = 0; i < 15; i++) {
             const particle = document.createElement('div');
             particle.classList.add('particle');
-            
-            // Posición aleatoria
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight;
-            
+
             // Tamaño aleatorio
-            const size = Math.random() * 10 + 5;
-            
+            const size = Math.random() * 8 + 4;
+
             // Color aleatorio
-            const colors = ['#FF4081', '#00BCD4', '#FFC107', '#8BC34A', '#9C27B0'];
+            const colors = ['#FF4081', '#00BCD4', '#FFC107', '#8BC34A', '#9C27B0', '#ff6b6b', '#4a2fbd'];
             const color = colors[Math.floor(Math.random() * colors.length)];
-            
+
+            // Dirección aleatoria desde el centro
+            const angle = (Math.PI * 2 * i) / 15 + (Math.random() * 0.5);
+            const distance = 50 + Math.random() * 120;
+            const endX = centerX + Math.cos(angle) * distance;
+            const endY = centerY + Math.sin(angle) * distance;
+
             // Configurar estilos
-            particle.style.left = `${x}px`;
-            particle.style.top = `${y}px`;
+            particle.style.left = `${centerX}px`;
+            particle.style.top = `${centerY}px`;
             particle.style.width = `${size}px`;
             particle.style.height = `${size}px`;
             particle.style.backgroundColor = color;
-            
-            // Añadir al body
-            document.body.appendChild(particle);
-            
+            particle.style.position = 'absolute';
+            particle.style.zIndex = '100';
+
+            // Añadir al container del juego
+            container.appendChild(particle);
+
+            // Animar hacia afuera
+            requestAnimationFrame(() => {
+                particle.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                particle.style.left = `${endX}px`;
+                particle.style.top = `${endY}px`;
+                particle.style.opacity = '0';
+                particle.style.transform = `scale(0.2)`;
+            });
+
             // Eliminar después de la animación
             setTimeout(() => {
                 particle.remove();
-            }, 1000);
+            }, 900);
         }
     }
     

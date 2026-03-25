@@ -25,7 +25,8 @@ class Game {
         this.timerWarningPlayed = false;
         this.autoSaveInterval = null;
         this.recentAnswers = [];
-        
+        this.autoNextTimeout = null;
+
         // Configuración del juego
         this.difficulty = "medium"; // easy, medium, hard
         this.soundEnabled = true;
@@ -125,6 +126,12 @@ class Game {
      * Carga una nueva pregunta aleatoria
      */
     loadQuestion() {
+        // Cancelar cualquier auto-avance pendiente
+        if (this.autoNextTimeout) {
+            clearTimeout(this.autoNextTimeout);
+            this.autoNextTimeout = null;
+        }
+
         // Detener el temporizador anterior si existe
         if (this.timer) clearInterval(this.timer);
         
@@ -288,17 +295,17 @@ class Game {
         // Comprobar si el juego ha terminado
         if (this.lives <= 0) {
             // Esperar un poco antes de terminar para que el usuario vea el feedback
-            setTimeout(() => {
+            this.autoNextTimeout = setTimeout(() => {
                 this.endGame();
             }, 2000);
         } else {
             // Automáticamente continuar a la siguiente pregunta después de 3 segundos
-            setTimeout(() => {
+            this.autoNextTimeout = setTimeout(() => {
                 this.loadQuestion();
             }, 3000);
         }
     }
-    
+
     /**
      * Verifica si la respuesta del usuario es correcta
      * @param {string} selectedOption - La opción seleccionada por el usuario
@@ -390,18 +397,20 @@ class Game {
         if (isCorrect) {
             // Para respuestas correctas, solo verificar si el juego terminó
             if (this.lives <= 0) {
-                this.endGame();
+                this.autoNextTimeout = setTimeout(() => {
+                    this.endGame();
+                }, 2000);
             }
         } else {
             // Para respuestas incorrectas, avanzar automáticamente
             if (this.lives <= 0) {
                 // Esperar un poco antes de terminar para que el usuario vea el feedback
-                setTimeout(() => {
+                this.autoNextTimeout = setTimeout(() => {
                     this.endGame();
                 }, 2000);
             } else {
                 // Automáticamente continuar a la siguiente pregunta después de 3 segundos
-                setTimeout(() => {
+                this.autoNextTimeout = setTimeout(() => {
                     this.loadQuestion();
                 }, 3000);
             }
