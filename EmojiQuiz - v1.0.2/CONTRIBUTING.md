@@ -1,92 +1,87 @@
-# Guía para Contribuir a EmojiQuiz
+# Guia para Contribuir a EmojiQuiz
 
-¡Gracias por tu interés en contribuir a EmojiQuiz! Esta guía te ayudará a entender cómo añadir contenido o realizar mejoras al juego.
+Gracias por tu interes en contribuir a EmojiQuiz! Esta guia te ayudara a entender como anadir contenido o realizar mejoras al juego.
 
-## Añadir Nuevas Preguntas
+## Anadir Nuevas Preguntas
 
-### Método 1: Edición Manual
+### Estructura de una pregunta
 
-1. Navega a la carpeta `data/questions/`
-2. Abre el archivo de la categoría donde quieres añadir preguntas (ej. `movies.js`)
-3. Añade tu nueva pregunta al array correspondiente según la dificultad
+Cada pregunta tiene este formato:
 
-Estructura de una pregunta:
 ```javascript
 {
-    emojis: ["🦁", "👑"],        // Array de emojis que representan la respuesta
-    answer: "El Rey León",       // Respuesta correcta
-    options: [                   // 4 opciones (incluyendo la respuesta correcta)
-        "El Rey León", 
-        "Tarzán", 
-        "Madagascar", 
-        "Jumanji"
-    ]
+    emojis: ["🎬", "🦁", "👑"],     // 2-5 emojis que representen la respuesta
+    answer: "El Rey Leon",           // Respuesta correcta
+    options: ["El Rey Leon", "Tarzan", "Madagascar", "Jumanji"]  // 4 opciones
 }
 ```
 
-### Método 2: Usando la Utilidad
+### Reglas para crear buenas preguntas
 
-También puedes usar nuestro script para añadir preguntas:
+1. **Los emojis deben tener sentido** para la respuesta (no usar emojis aleatorios)
+2. **La respuesta correcta** debe estar en el array de opciones
+3. **Las 4 opciones** deben ser plausibles (del mismo tema)
+4. **No duplicar** respuestas que ya existan en la misma categoria
+5. **Para Paises**: usar SOLO paises, nunca ciudades o regiones
+6. **Para Literatura**: usar SOLO obras publicadas, no conceptos
+7. **Banderas**: verificar que correspondan al pais correcto
+8. **No usar emojis que no rendericen** en todos los navegadores
+
+### Categorias disponibles (10)
+
+| Archivo | Categoria | Desbloqueo |
+|---------|-----------|------------|
+| `questions/movies.js` | Peliculas | Inicio |
+| `questions/countries.js` | Paises | Inicio |
+| `questions/history.js` | Historia | Inicio |
+| `questions/science.js` | Ciencia | Inicio |
+| `questions/food.js` | Comida | Inicio |
+| `questions/sports.js` | Deportes | Inicio |
+| `questions/literature.js` | Literatura | Nivel 2 |
+| `questions/technology.js` | Tecnologia | Nivel 2 |
+| `questions/music.js` | Musica | Nivel 3 |
+| `questions/animals.js` | Animales | Nivel 3 |
+
+### Dificultades
+
+- **easy**: Conceptos muy conocidos, emojis obvios
+- **medium**: Requiere algo de conocimiento, emojis menos directos
+- **hard**: Conocimiento especializado, emojis abstractos
+
+### Ejemplo: anadir pregunta a peliculas
+
+Edita `data/questions/movies.js` y anade al array de la dificultad correspondiente:
 
 ```javascript
-import { addQuestion } from './data/utils/questionManager.js';
-
-// Añadir una nueva pregunta
-addQuestion({
-    category: 'movies',
-    difficulty: 'medium',
-    emojis: ['👽', '📞', '🏠', '🚲'],
-    answer: 'E.T.',
-    options: ['E.T.', 'La Llegada', 'Distrito 9', 'Depredador']
-});
+// En el array "medium"
+{ emojis: ["🧙‍♂️", "💍", "🌋", "🧝"], answer: "El Senor de los Anillos", options: ["Harry Potter", "El Hobbit", "El Senor de los Anillos", "Las Cronicas de Narnia"] }
 ```
 
-## Añadir una Nueva Categoría
+### Validar tus cambios
 
-1. Crea un nuevo archivo en `data/questions/` (ej. `sports.js`) con esta estructura:
+Despues de anadir preguntas, ejecuta:
 
-```javascript
-/**
- * EmojiQuiz - questions/sports.js
- * Preguntas de la categoría "Deportes"
- */
-
-export const sportsQuestions = {
-    easy: [
-        // Preguntas fáciles
-    ],
-    medium: [
-        // Preguntas medias
-    ],
-    hard: [
-        // Preguntas difíciles
-    ]
-};
+```bash
+cd "EmojiQuiz - v1.0.2"
+node scripts/validateData.js      # Verifica estructura
+node scripts/checkDuplicates.js   # Busca duplicados
 ```
 
-2. Añade la nueva categoría al archivo `data/categories.js`:
+## Anadir Nueva Categoria
 
-```javascript
-export const categories = [
-    // ... categorías existentes ...
-    {
-        id: "sports",
-        name: "Deportes",
-        icon: "⚽",
-        description: "Deportes y eventos deportivos en emojis",
-        unlocked: false,
-        unlockLevel: 3,
-        color: "#e67e22"
-    }
-];
-```
+1. Crea el archivo de preguntas en `data/questions/tu_categoria.js`
+2. Registrala en `data/questions/index.js` (import + export)
+3. Anadela en `data/categories.js`
+4. Anade condicion de logro en `js/game.js` (`achievementConditions`)
+5. Anade el logro en `data/achievements.js`
+6. Verifica que las traducciones existan en `js/i18n/translations.js`
 
-3. Importa y agrega la nueva categoría en `data/questions/index.js`:
+## Proceso de Contribucion
 
-```javascript
-import { sportsQuestions } from './sports.js';
-
-export const questions = {
-    // ... categorías existentes ...
-    sports: sportsQuestions
-}; 
+1. Fork el proyecto
+2. Crea una rama: `git checkout -b feature/nueva-pregunta`
+3. Haz tus cambios
+4. Ejecuta la validacion
+5. Commit: `git commit -m 'Agregar preguntas de X'`
+6. Push: `git push origin feature/nueva-pregunta`
+7. Abre un Pull Request
