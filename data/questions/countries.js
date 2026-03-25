@@ -12,30 +12,47 @@ export const countriesQuestions = {
         { emojis: ["🗽", "🍔", "🏈"], answer: "Estados Unidos", options: ["Canadá", "Inglaterra", "Estados Unidos", "Australia"] },
         { emojis: ["🍺", "🥨", "⚽", "🏰"], answer: "Alemania", options: ["Alemania", "Bélgica", "República Checa", "Austria"] },
         { emojis: ["🍜", "🥢", "🐉", "🧧"], answer: "China", options: ["Japón", "Corea del Sur", "China", "Vietnam"] },
-        { emojis: ["🎭", "⚽", "🥘", "💃"], answer: "España", options: ["España", "Portugal", "Italia", "Francia"] }
+        { emojis: ["🎭", "⚽", "🥘", "💃"], answer: "España", options: ["España", "Portugal", "Italia", "Francia"] },
+        { emojis: ["⚽", "🎶", "🏖️", "💃"], answer: "Brasil", options: ["Brasil", "Argentina", "Colombia", "Venezuela"] },
+        { emojis: ["🍁", "🏒", "🐻"], answer: "Canadá", options: ["Canadá", "Rusia", "Noruega", "Finlandia"] },
+        { emojis: ["🏉", "🐑", "🌋", "🏋️"], answer: "Nueva Zelanda", options: ["Nueva Zelanda", "Australia", "Fiyi", "Samoa"] },
+        { emojis: ["🕌", "🍰", "🌊", "🧣"], answer: "Turquía", options: ["Turquía", "Grecia", "Egipto", "Irán"] },
+        { emojis: ["👠", "🗼", "🥗", "🍷"], answer: "Francia", options: ["Francia", "Italia", "España", "Suiza"] },
+        { emojis: ["🎶", "🍜", "📱", "🇰🇷"], answer: "Corea del Sur", options: ["Corea del Sur", "Japón", "China", "Taiwán"] },
+        { emojis: ["🌴", "🎶", "🏝️", "🇨🇺"], answer: "Cuba", options: ["Cuba", "Puerto Rico", "Jamaica", "República Dominicana"] }
     ],
     medium: [
-        { emojis: ["🥐", "🗼", "🍷"], answer: "París", options: ["Roma", "París", "Bruselas", "Ginebra"] },
         { emojis: ["☕", "🌧️", "👑"], answer: "Reino Unido", options: ["Irlanda", "Reino Unido", "Holanda", "Bélgica"] },
         { emojis: ["🏺", "🏛️", "🫒"], answer: "Grecia", options: ["Italia", "Turquía", "Chipre", "Grecia"] },
-        { emojis: ["🍻", "🌭", "🏰"], answer: "Baviera", options: ["Praga", "Viena", "Baviera", "Múnich"] },
-        { emojis: ["🍁", "🏒", "🐻"], answer: "Ontario", options: ["Alberta", "Ontario", "Quebec", "Columbia Británica"] },
         { emojis: ["🐫", "🏜️", "🔺", "🏛️"], answer: "Egipto", options: ["Egipto", "Marruecos", "Túnez", "Argelia"] },
-        { emojis: ["🐘", "🧘‍♂️", "🌶️", "🕉️"], answer: "Nueva Delhi", options: ["Mumbai", "Nueva Delhi", "Calcuta", "Bangalore"] },
-        { emojis: ["🌴", "🌋", "🏄‍♀️", "🍍"], answer: "Hawái", options: ["Filipinas", "Hawái", "Jamaica", "Maldivas"] }
+        { emojis: ["🐘", "🧘‍♂️", "🌶️", "🕉️"], answer: "India", options: ["India", "Nepal", "Sri Lanka", "Pakistán"] },
+        { emojis: ["🏔️", "🧀", "⏰", "🍫"], answer: "Suiza", options: ["Suiza", "Austria", "Bélgica", "Alemania"] },
+        { emojis: ["🏔️", "❄️", "🚢", "🇳🇴"], answer: "Noruega", options: ["Noruega", "Suecia", "Finlandia", "Islandia"] },
+        { emojis: ["🏖️", "🍛", "🐘", "🇹🇭"], answer: "Tailandia", options: ["Tailandia", "Vietnam", "Camboya", "Myanmar"] },
+        { emojis: ["🏔️", "🦙", "🥘", "🏛️"], answer: "Perú", options: ["Perú", "Bolivia", "Ecuador", "Chile"] },
+        { emojis: ["🏄‍♂️", "🍷", "🐟", "🇵🇹"], answer: "Portugal", options: ["Portugal", "España", "Italia", "Grecia"] },
+        { emojis: ["☘️", "🍺", "🎶", "🇮🇪"], answer: "Irlanda", options: ["Irlanda", "Escocia", "Gales", "Inglaterra"] },
+        { emojis: ["🏝️", "🌴", "🍍", "🌺"], answer: "Filipinas", options: ["Filipinas", "Indonesia", "Tailandia", "Maldivas"] },
+        { emojis: ["🧉", "🥩", "⚽", "🇦🇷"], answer: "Argentina", options: ["Argentina", "Uruguay", "Chile", "Paraguay"] },
+        { emojis: ["🎺", "🌮", "🏜️", "🎶"], answer: "Colombia", options: ["Colombia", "Venezuela", "Ecuador", "Panamá"] },
+        { emojis: ["🏔️", "🛷", "⛷️", "🇦🇹"], answer: "Austria", options: ["Austria", "Suiza", "Alemania", "Eslovenia"] },
+        { emojis: ["🌋", "🏝️", "🌊", "🇮🇸"], answer: "Islandia", options: ["Islandia", "Noruega", "Groenlandia", "Irlanda"] }
     ],
     hard: [
-        { emojis: ["🧉", "🥩", "💃", "⚽"], answer: "Argentina", options: ["Uruguay", "Argentina", "Chile", "Paraguay"] },
-        { emojis: ["🍸", "🚬", "🥂", "🥖"], answer: "Provenza", options: ["Normandía", "Provenza", "Mónaco", "Suiza"] },
-        { emojis: ["🪔", "🧘‍♀️", "🐯", "🕌"], answer: "Rajastán", options: ["Punjab", "Rajastán", "Gujarat", "Kerala"] },
+        { emojis: ["🍸", "🚬", "🥂", "🥖"], answer: "Mónaco", options: ["Mónaco", "Francia", "Suiza", "Luxemburgo"] },
+        { emojis: ["🪔", "🧘‍♀️", "🐯", "🕌"], answer: "Nepal", options: ["Nepal", "India", "Bután", "Birmania"] },
         { emojis: ["🦒", "🦁", "🦓", "🌍"], answer: "Kenia", options: ["Sudáfrica", "Tanzania", "Kenia", "Etiopía"] },
         { emojis: ["🏮", "🐲", "🧧", "🥟"], answer: "Taiwán", options: ["Singapur", "Hong Kong", "Taiwán", "Mongolia"] },
-        { emojis: ["🌊", "🗿", "🏝️", "🌋"], answer: "Islandia", options: ["Noruega", "Islandia", "Nueva Zelanda", "Groenlandia"] },
-        { emojis: ["⛩️", "🍱", "👘", "🎋"], answer: "Tokio", options: ["Pekín", "Tokio", "Seúl", "Kioto"] },
-        { emojis: ["🦘", "🦙", "🏜️", "🏄‍♂️"], answer: "Queensland", options: ["Tasmania", "Queensland", "Melbourne", "Sydney"] },
+        { emojis: ["🏝️", "🥥", "🌺", "🌊"], answer: "Fiyi", options: ["Fiyi", "Samoa", "Tonga", "Vanuatu"] },
+        { emojis: ["🕌", "🛢️", "🏜️", "🇸🇦"], answer: "Arabia Saudita", options: ["Arabia Saudita", "Emiratos Árabes", "Qatar", "Kuwait"] },
         { emojis: ["🧆", "🕌", "🏜️", "⛰️"], answer: "Marruecos", options: ["Túnez", "Marruecos", "Argelia", "Jordania"] },
-        { emojis: ["🎭", "🏛️", "🏺", "⛵"], answer: "Atenas", options: ["Zagreb", "Estambul", "Atenas", "Nicosia"] },
-        { emojis: ["🌿", "🍁", "❄️", "🏒"], answer: "Montreal", options: ["Vancouver", "Toronto", "Montreal", "Ottawa"] },
-        { emojis: ["🧊", "🐧", "🐋", "❄️"], answer: "Antártida", options: ["Groenlandia", "Islandia", "Antártida", "Noruega"] }
+        { emojis: ["🧊", "🐧", "🐋", "❄️"], answer: "Antártida", options: ["Groenlandia", "Islandia", "Antártida", "Noruega"] },
+        { emojis: ["🎶", "🌴", "🏄‍♂️", "🇯🇲"], answer: "Jamaica", options: ["Jamaica", "Cuba", "Puerto Rico", "Trinidad y Tobago"] },
+        { emojis: ["🏜️", "🐎", "🏕️", "🇲🇳"], answer: "Mongolia", options: ["Mongolia", "Kazajistán", "Kirguistán", "Uzbekistán"] },
+        { emojis: ["🏛️", "❄️", "🧖‍♂️", "🇫🇮"], answer: "Finlandia", options: ["Finlandia", "Suecia", "Noruega", "Estonia"] },
+        { emojis: ["🐃", "🌾", "🏯", "🇻🇳"], answer: "Vietnam", options: ["Vietnam", "Camboya", "Laos", "Myanmar"] },
+        { emojis: ["🏔️", "🧈", "🛕", "🇧🇹"], answer: "Bután", options: ["Bután", "Nepal", "Tíbet", "Sri Lanka"] },
+        { emojis: ["🏝️", "🐢", "🌊", "🇲🇻"], answer: "Maldivas", options: ["Maldivas", "Seychelles", "Mauricio", "Fiyi"] },
+        { emojis: ["🎭", "🥩", "🍷", "🇺🇾"], answer: "Uruguay", options: ["Uruguay", "Argentina", "Paraguay", "Chile"] }
     ]
-}; 
+};
