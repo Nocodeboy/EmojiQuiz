@@ -26,6 +26,7 @@ class Game {
         this.autoSaveInterval = null;
         this.recentAnswers = [];
         this.autoNextTimeout = null;
+        this.isAnswered = false;
 
         // Configuración del juego
         this.difficulty = "medium"; // easy, medium, hard
@@ -138,8 +139,9 @@ class Game {
         // Reproducir sonido de nueva pregunta
         if (window.audio) window.audio.play('click');
         
-        // Resetear el flag de advertencia del temporizador
+        // Resetear flags
         this.timerWarningPlayed = false;
+        this.isAnswered = false;
         
         // Seleccionar una categoría aleatoria desbloqueada
         if (!window.gameData || !window.gameData.categories) {
@@ -229,9 +231,17 @@ class Game {
      */
     startTimer() {
         if (!window.gameData) return;
+
+        // Limpiar cualquier timer o auto-avance previo
+        if (this.timer) clearInterval(this.timer);
+        if (this.autoNextTimeout) {
+            clearTimeout(this.autoNextTimeout);
+            this.autoNextTimeout = null;
+        }
+
         const diffSettings = window.gameData.settings.difficulties[this.difficulty];
         this.remainingTime = diffSettings.timePerQuestion;
-        
+
         // Reproducir sonido de cuenta regresiva para empezar
         if (window.audio) window.audio.play('countdown');
         
@@ -266,6 +276,13 @@ class Game {
      * Maneja cuando se acaba el tiempo para responder
      */
     handleTimeout() {
+        // Prevenir doble procesamiento
+        if (this.isAnswered) return;
+        this.isAnswered = true;
+
+        // Detener el temporizador
+        if (this.timer) clearInterval(this.timer);
+
         // Reproducir sonido de error
         if (window.audio) window.audio.play('wrong');
         
@@ -311,6 +328,10 @@ class Game {
      * @param {string} selectedOption - La opción seleccionada por el usuario
      */
     checkAnswer(selectedOption) {
+        // Prevenir doble procesamiento
+        if (this.isAnswered) return;
+        this.isAnswered = true;
+
         // Detener el temporizador
         clearInterval(this.timer);
         
